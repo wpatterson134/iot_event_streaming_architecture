@@ -42,5 +42,4 @@ spec:
         limits: 
           memory:
           cpu:
-        ports:
-        - containerPort: 2181
+        # TODO: need a service to connect to zookeeper
