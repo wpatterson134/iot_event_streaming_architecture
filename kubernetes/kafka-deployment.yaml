@@ -24,7 +24,8 @@ spec:
           value: "1"
         - name: KAFKA_COMPRESSION_TYPE
           value: "gzip"
-        # Required when running in a single-node cluster, as we are. We would be able to take the default if we had
+        # Required when running in a single-node cluster, as we are. 
+        #We would be able to take the default if we had
       # three or more nodes in the cluster.
         - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
           value: "1"
