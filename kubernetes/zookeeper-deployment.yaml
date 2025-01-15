@@ -23,5 +23,5 @@ spec:
         env:
         - name: ZOOKEEPER_CLIENT_PORT
           value: "2181"
-        ports:
-        - containerPort: 2181
+        # ports:
+        # - containerPort: 2181

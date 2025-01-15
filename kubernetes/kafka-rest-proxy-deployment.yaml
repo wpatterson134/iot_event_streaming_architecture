@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-rest-proxy-deployment
+  labels:
+    app: kafka-rest-proxy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kafka-rest-proxy
+  template:
+    metadata:
+      labels:
+        app: kafka-rest-proxy
+    spec:
+      containers:
+      - name: kafka-rest-proxy
+        image: confluentinc/cp-kafka-rest:latest
+        env:
+        # Specifies the ZooKeeper connection string. This service connects
+      # to ZooKeeper so that it can broadcast its endpoints as well as
+      # react to the dynamic topology of the Kafka cluster.
+        - name: KAFKA_REST_ZOOKEEPER_CONNECT
+          value: "zookeeper:2181"
+        # The address on which Kafka REST will listen for API requests.
+        - name: KAFKA_REST_LISTENERS
+          value: "http://0.0.0.0:8082/"
+         # Required. This is the hostname used to generate absolute URLs in responses.
+      # It defaults to the Java canonical hostname for the container, which might
+      # not be resolvable in a Docker environment.
+        - name: KAFKA_REST_HOST_NAME
+          value: "kafka-rest-proxy"
+        # The list of Kafka brokers to connect to. This is only used for bootstrapping,
+      # the addresses provided here are used to initially connect to the cluster,
+      # after which the cluster will dynamically change. Thanks, ZooKeeper!
+        - name: KAFKA_REST_BOOTSTRAP_SERVERS
+          value: "kafka:9092"
+        # Kafka REST relies upon Kafka, ZooKeeper
+    # This will instruct docker to wait until those services are up
+    # before attempting to start Kafka REST.
+        ports:
+        - containerPort: 8082
+        limits:
+          cpu:
+          memory:
+      # TODO: figure out "depends_on" param, since
+      # this deployment depends on both Zookeeper 
+      # and Kafka
