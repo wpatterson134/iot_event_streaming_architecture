@@ -1,25 +1,3 @@
-# Browse Kafka topics and understand what's happening on your cluster.
-  # Find topics / view topic metadata / browse topic data
-  # (kafka messages) / view topic configuration / download data.
-  # https://github.com/Landoop/kafka-topics-ui
-  kafka-topics-ui:
-    image: landoop/kafka-topics-ui:latest
-    container_name: kafka-topics-ui
-    ports:
-      - "8081:8000"
-    environment:
-      # Required. Instructs the UI where it can find the Kafka REST Proxy.
-      KAFKA_REST_PROXY_URL: "http://kafka-rest-proxy:8082/"
-      # This instructs the docker image to use Caddy to proxy traffic to kafka-topics-ui.
-      PROXY: "true"
-    # kafka-topics-ui relies upon Kafka REST.
-    # This will instruct docker to wait until those services are up
-    # before attempting to start kafka-topics-ui.
-    depends_on:
-      - kafka-rest-proxy
-
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,7 +15,21 @@ spec:
         app: kafka-topics-ui
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      - name: kafka-topics-ui
+        image: landoop/kafka-topics-ui:latest
+        env: 
+        - name: KAFKA_REST_PROXY_URL
+          value: "http://kafka-rest-proxy:8082/"
+          # Required. Instructs the UI where it can find the Kafka REST Proxy.
+        - name: PROXY
+          value: "true"
+          # This instructs the docker image to use Caddy to proxy traffic to kafka-topics-ui.
         ports:
-        - containerPort: 80
+        - containerPort: 8000 # hostport needs to be 8081 (container port is good with 8000 though)
+        limits:
+          memory:
+          cpu:
+      # kafka-topics-ui relies upon Kafka REST.
+    # This will instruct docker to wait until those services are up
+    # before attempting to start kafka-topics-ui.
+        #depends on kafka-rest-proxy
