@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zoonavigator-web-deployment
+  labels:
+    app: zoonavigator-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zoonavigator-web
+  template:
+    metadata:
+      labels:
+        app: zoonavigator-web
+    spec:
+      containers:
+      - name: zoonavigator-web
+        image: elkozmon/zoonavigator-web:latest
+        ports:
+        - containerPort: 8000
+        #TODO: hostport is 8083
+        env:
+        # The following two keys instruct the web component how to connect to
+      # the backing api component.
+          - name: API_HOST
+            value: "9000"
+
+        #TODO: zoonavigator-web relies upon zoonavigator-api.
+    # This will instruct docker to wait until those services are up
+    # before attempting to start zoonavigator-web.
+    # depends_on:
+    #   - zoonavigator-api
