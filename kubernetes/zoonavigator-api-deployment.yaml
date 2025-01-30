@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zoonavigator-api-deployment
+  labels:
+    app: zoonavigator-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zoonavigator-api
+  template:
+    metadata:
+      labels:
+        app: zoonavigator-api
+    spec:
+      containers:
+      - name: zoonavigator-api
+        image: elkozmon/zoonavigator-api:latest
+        ports:
+        - containerPort: 80
+        env: 
+        # The port on which the api service will listen for incoming connections.
+          - name: SERVER_HTTP_PORT
+            value: "9000"
+        #TODO: depends_on zookeeper
+        # zoonavigator-api relies upon ZooKeeper.
+    # This will instruct docker to wait until those services are up
+    # before attempting to start zoonavigator-api.
