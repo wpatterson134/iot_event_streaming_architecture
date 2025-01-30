@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-connect-ui-deployment
+  labels:
+    app: kafka-connect-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-connect-ui
+  template:
+    metadata:
+      labels:
+        app: kafka-connect-ui
+    spec:
+      containers:
+      - name: kafka-connect-ui
+        image: landoop/kafka-connect-ui:latest
+        ports:
+        - containerPort: 8000
+        #TODO: figure out this port stuff
+        env:
+              # Required. Instructs the UI where it can find Kafka Connect.
+          - name: CONNECT_URL
+            value: "http://kafka-connect:8083/"
+               # This instructs the docker image to use Caddy to proxy traffic to kafka-connect-ui.
+          - name: PROXY
+            value: "true"
+        #TODO: depends on kafka-connect
+          # kafka-connect-ui relies upon Kafka Connect.
+    # This will instruct docker to wait until those services are up
+    # before attempting to start kafka-connect-ui.
