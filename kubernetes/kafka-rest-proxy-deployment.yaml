@@ -41,6 +41,7 @@ spec:
     # before attempting to start Kafka REST.
         ports:
         - containerPort: 8082
+        #TODO: figure out this port stuff
         limits:
           cpu:
           memory:
