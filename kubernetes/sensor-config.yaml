@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sensor-config
+data:
+  MONGO_ROOT_USER: "devroot"
+  MONGO_ROOT_PASSWORD: "devroot"
+  MONGOEXPRESS_LOGIN: "dev"
+  MONGOEXPRESS_PASSWORD: "dev"
+  MONGO_DB: "iotframes"
+  API_PORT: "8088"
+  IOT_SENSOR_1_ID: "12434345"
+  IOT_SENSOR_1_NAME: "iot_sensor_1"
+  IOT_SENSOR_1_PLACE_ID: "32347983"
+  IOT_SENSOR_2_ID: "21321434"
+  IOT_SENSOR_2_NAME: "iot_sensor_2"
+  IOT_SENSOR_2_PLACE_ID: "32347983"
+  IOT_SENSOR_3_ID: "43245253"
+  IOT_SENSOR_3_NAME: "iot_sensor_3"
+  IOT_SENSOR_3_PLACE_ID: "42343243"

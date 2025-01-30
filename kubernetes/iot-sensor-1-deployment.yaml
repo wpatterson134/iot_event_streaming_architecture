@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iot-sensor-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iot-sensor-1
+  template:
+    metadata:
+      labels:
+        app: iot-sensor-1
+    spec:
+      containers:
+        - name: iot-sensor-1
+          image: ssanchez11/iot_sensor:0.0.1-SNAPSHOT
+          env:
+            - name: sensor.id
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-config
+                  key: IOT_SENSOR_1_ID
+            - name: sensor.name
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-config
+                  key: IOT_SENSOR_1_NAME
+            - name: sensor.place.id
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-config
+                  key: IOT_SENSOR_1_PLACE_ID
+          restartPolicy: Always
