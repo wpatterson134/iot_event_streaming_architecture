@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 8084  # External access
       targetPort: 8081  # Container port
-  type: NodePort  # Change to LoadBalancer if using cloud Kubernetes
+  type: LoadBalancer  
