@@ -23,6 +23,10 @@ spec:
     spec:
       containers:
         - name: mosquitto
+          limits:
+            cpu:
+            memory:
+            #TODO: cpu and mem limits
           image: eclipse-mosquitto:latest
           ports:
             - containerPort: 1883

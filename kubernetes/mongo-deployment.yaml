@@ -14,6 +14,10 @@ spec:
     spec:
       containers:
         - name: mongo
+          limits:
+            cpu:
+            memory:
+            #TODO: Limits
           image: mongo
           ports:
             - containerPort: 27017
@@ -22,15 +26,15 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: sensor-config
-                  key: MONGO_INITDB_DATABASE
+                  key: MONGO_DB
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: sensor-config
-                  key: MONGO_INITDB_ROOT_USERNAME
+                  key: MONGO_ROOT_USER
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: sensor-config
-                  key: MONGO_INITDB_ROOT_PASSWORD
+                  key: MONGO_ROOT_PASSWORD
           restartPolicy: Always
