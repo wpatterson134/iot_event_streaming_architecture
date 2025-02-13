@@ -34,3 +34,18 @@ spec:
           # kafka-connect-ui relies upon Kafka Connect.
     # This will instruct docker to wait until those services are up
     # before attempting to start kafka-connect-ui.
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-connect-ui-service
+spec:
+  selector:
+    app: kafka-connect-ui
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8000
+  type: ClusterIP
