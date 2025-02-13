@@ -19,6 +19,9 @@ spec:
       #TODO: needs "links (theres a links in docker compose)"
       - name: kafka
         image: confluentinc/cp-kafka
+        volumeMounts:
+          - name: kafka-data
+            mountPath: /var/lib/kafka
         env:
         - name: KAFKA_ZOOKEEPER_CONNECT
           value: "zookeeper:2181"
@@ -42,6 +45,10 @@ spec:
           value: "PLAINTEXT://kafka:9092"
         - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
           value: "true"
+        volumes:
+          - name: kafka-data
+            persistentVolumeClaim:
+              claimName: kafka-data
         limits: 
           memory:
           cpu:
