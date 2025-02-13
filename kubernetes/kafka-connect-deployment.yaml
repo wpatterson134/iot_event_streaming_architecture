@@ -20,7 +20,7 @@ spec:
           hostPath:
             path: ./kafka_connect/data
             type: Directory
-        #TODO: figure out what the absolute path should be for his volume 
+        #TODO: hostPaths are wrong, should be absolute path. May need PV and PVC
       containers:
       - name: kafka-connect
         image: confluentinc/cp-kafka-connect:latest

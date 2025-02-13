@@ -38,7 +38,7 @@ spec:
         - name: prometheus-storage
           hostPath:
             path: /prometheus
-            #TODO: Figure out what absolute path should be for volume
+            #TODO: hostPaths are wrong, should be absolute path. May need PV and PVC
         - name: prometheus-data
           peristentVolumeClaim:
             claimName: prometheus_data

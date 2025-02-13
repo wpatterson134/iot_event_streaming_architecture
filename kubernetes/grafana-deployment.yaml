@@ -26,6 +26,7 @@ spec:
           hostPath: 
             path: /grafana/dashboards
             type: Directory
+            #TODO: hostPaths are wrong, should be absolute path. May need PV and PVC
         - name: grafana-setup
           hostPath:
             path: /grafana/setup.sh
