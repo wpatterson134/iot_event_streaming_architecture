@@ -17,6 +17,9 @@ spec:
       containers:
         - name: prometheus
           image: prom/prometheus:latest
+          limits:
+            cpu:
+            memory: #TODO: add limits
           args:
             - "--config.file=/etc/prometheus/prometheus.yml"
             - "--storage.tsdb.path=/prometheus"

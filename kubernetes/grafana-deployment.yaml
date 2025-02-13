@@ -33,6 +33,9 @@ spec:
       containers:
         - name: grafana
           image: grafana/grafana:latest-ubuntu
+          limits:
+            cpu:
+            memory: #TODO: add limits
           command: ["/setup.sh"]
           env:
             - name: GF_SECURITY_ADMIN_USER
