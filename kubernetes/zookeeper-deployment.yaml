@@ -19,7 +19,7 @@ spec:
         image: confluentinc/cp-zookeeper
         limits:
           cpu:
-          memory:
+          memory: #TODO: CPU AND MEM LIMITS
         env:
         - name: ZOOKEEPER_CLIENT_PORT
           value: "2181"
