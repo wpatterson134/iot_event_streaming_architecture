@@ -15,7 +15,6 @@ spec:
         app: kafka
     spec:
       containers:
-      # TODO: needs volumes attached
       #TODO: needs "links (theres a links in docker compose)"
       - name: kafka
         image: confluentinc/cp-kafka

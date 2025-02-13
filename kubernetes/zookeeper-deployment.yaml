@@ -23,7 +23,4 @@ spec:
         env:
         - name: ZOOKEEPER_CLIENT_PORT
           value: "2181"
-        # ports:
-        # - containerPort: 2181
-        #TODO: figure out container ports
-        #TODO: this deployment needs volumes 
+        

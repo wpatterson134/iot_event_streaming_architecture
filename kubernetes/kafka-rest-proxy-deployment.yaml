@@ -41,10 +41,25 @@ spec:
     # before attempting to start Kafka REST.
         ports:
         - containerPort: 8082
-        #TODO: figure out this port stuff
+        
         limits:
           cpu:
           memory:
       # TODO: figure out "depends_on" param, since
       # this deployment depends on both Zookeeper 
       # and Kafka
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-rest-proxy-service
+spec:
+  selector:
+    app: kafka-rest-proxy
+  ports:
+    - protocol: TCP
+      port: 9999
+      targetPort: 8082
+  type: ClusterIP

@@ -25,11 +25,25 @@ spec:
           value: "true"
           # This instructs the docker image to use Caddy to proxy traffic to kafka-topics-ui.
         ports:
-        - containerPort: 8000 # TODO: hostport needs to be 8081 (container port is good with 8000 though)
+        - containerPort: 8000 
         limits:
-          memory:
+          memory: #TODO: CPU and mem limits
           cpu:
       # kafka-topics-ui relies upon Kafka REST.
     # This will instruct docker to wait until those services are up
     # before attempting to start kafka-topics-ui.
         #TODO: depends on kafka-rest-proxy
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-topics-ui-service
+spec:
+  selector:
+    app: kafka-topics-ui
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8000
+  type: ClusterIP
