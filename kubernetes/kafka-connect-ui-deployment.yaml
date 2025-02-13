@@ -22,7 +22,6 @@ spec:
           cpu:
         ports:
         - containerPort: 8000
-        #TODO: figure out this port stuff
         env:
               # Required. Instructs the UI where it can find Kafka Connect.
           - name: CONNECT_URL
