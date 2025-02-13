@@ -17,7 +17,10 @@ spec:
       hostname: kafka-connect
       volumes:
         - name: kafka-connect-volume
-        #TODO: figure out this volume 
+          hostPath:
+            path: ./kafka_connect/data
+            type: Directory
+        #TODO: figure out what the absolute path should be for his volume 
       containers:
       - name: kafka-connect
         image: confluentinc/cp-kafka-connect:latest
@@ -50,6 +53,9 @@ spec:
           value: "/usr/share/java,/data/connectors/"
         - name: CONNECT_LOG4J_ROOT_LOGLEVEL
           value: "INFO"
+      volumeMounts:
+        - name: kafka-connect-volume
+          path: /data
       limits:
         cpu:
         memory:
