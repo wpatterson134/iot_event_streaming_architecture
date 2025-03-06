@@ -14,9 +14,7 @@ spec:
     spec:
       containers:
         - name: mongo-express
-          limits:
-            cpu:
-            memory:
+          
             #TODO: Limits
           image: mongo-express
           ports:
@@ -50,4 +48,4 @@ spec:
                 configMapKeyRef:
                   name: sensor-config
                   key: MONGOEXPRESS_PASSWORD
-          restartPolicy: Always
+          #restartPolicy: Always
