@@ -3,12 +3,12 @@ apiVersion: mongodbcommunity.mongodb.com/v1
 kind: MongoDBCommunity
 metadata:
   name: example-mongodb
+  labels:
+    app: mongo
 spec:
   members: 3
   type: ReplicaSet
   version: "6.0.5"
-  labels:
-    app: mongo
   security:
     authentication:
       modes: ["SCRAM"]
