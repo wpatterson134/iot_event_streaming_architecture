@@ -21,7 +21,7 @@ spec:
             - containerPort: 8081
           env:
             - name: ME_CONFIG_MONGODB_SERVER
-              value: "mongo"
+              value: "mongo-svc"
             - name: ME_CONFIG_MONGODB_PORT
               value: "27017"
             - name: ME_CONFIG_MONGODB_ENABLE_ADMIN
