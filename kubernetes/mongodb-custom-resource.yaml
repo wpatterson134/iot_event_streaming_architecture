@@ -2,9 +2,7 @@
 apiVersion: mongodbcommunity.mongodb.com/v1
 kind: MongoDBCommunity
 metadata:
-  name: example-mongodb
-  labels:
-    app: mongo
+  name: mongo
 spec:
   members: 3
   type: ReplicaSet
