@@ -56,14 +56,6 @@ spec:
       volumeMounts:
         - name: kafka-connect-volume
           path: /data
-      limits:
-        cpu:
-        memory:
-        #TODO: add memory limits for this deployment
-      # depends_on:
-      #  - zookeeper
-      #  - kafka
-      # TODO: figure out depends_on for this deployment
       command: 
       - bash 
       - -c 
