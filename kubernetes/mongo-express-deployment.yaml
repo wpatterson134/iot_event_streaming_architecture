@@ -14,7 +14,9 @@ spec:
     spec:
       containers:
         - name: mongo-express
-          
+          command: ["/bin/sh", "-c"]
+          args:
+            - 'ME_CONFIG_MONGODB_URL="mongodb://devroot:password@mongo-svc:27017/admin?authMechanism=SCRAM-SHA-256" node app'          
             #TODO: Limits
           image: mongo-express
           ports:
