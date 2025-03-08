@@ -25,7 +25,7 @@ spec:
               #The above environment variable needs to be the same as the service of the mongo db service
             - name: ME_CONFIG_MONGODB_PORT
               value: "27017"
-            - name: MONGO_URI
+            - name: ME_CONFIG_MONGODB_URL
               value: "mongodb://devroot:password@mongo-svc.mongodb.svc.cluster.local:27017/admin?authMechanism=SCRAM-SHA-256"
             - name: ME_CONFIG_MONGODB_ENABLE_ADMIN
               value: "true"
