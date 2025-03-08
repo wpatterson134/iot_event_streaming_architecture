@@ -21,7 +21,7 @@ spec:
             - containerPort: 8081
           env:
             - name: ME_CONFIG_MONGODB_SERVER
-              value: "mongo-svc"
+              value: "mongo-0.mongo-svc.mongodb.svc.cluster.local"
               #The above environment variable needs to be the same as the service of the mongo db service
             - name: ME_CONFIG_MONGODB_PORT
               value: "27017"
