@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: sensor-config
 data:
-  MONGO_ROOT_USER: "root"
+  MONGO_ROOT_USER: "admin"
   MONGO_ROOT_PASSWORD: "dir823rEg"
   MONGOEXPRESS_LOGIN: "dev"
   MONGOEXPRESS_PASSWORD: "dev"
