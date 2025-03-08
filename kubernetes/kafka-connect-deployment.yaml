@@ -18,7 +18,7 @@ spec:
       volumes:
         - name: kafka-connect-volume
           hostPath:
-            path: ./kafka_connect/data
+            path: /var/lib/kafka_connect/data
             type: Directory
         #TODO: hostPaths are wrong, should be absolute path. May need PV and PVC
       containers:
