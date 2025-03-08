@@ -55,7 +55,7 @@ spec:
           value: "INFO"
         volumeMounts:
           - name: kafka-connect-volume
-            path: /data
+            mountPath: /data
         command: 
         - bash 
         - -c 
