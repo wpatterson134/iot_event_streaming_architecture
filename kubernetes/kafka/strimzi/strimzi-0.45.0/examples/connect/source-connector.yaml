@@ -5,7 +5,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnector
 metadata:
-  name: my-source-connector
+  name: iot-frames-mongodb-sink
   labels:
     # The strimzi.io/cluster label identifies the KafkaConnect instance
     # in which to create this connector. That KafkaConnect instance
@@ -14,7 +14,18 @@ metadata:
     strimzi.io/cluster: my-connect-cluster
 spec:
   class: org.apache.kafka.connect.file.FileStreamSourceConnector
-  tasksMax: 2
+  tasksMax: 1
   config:
-    file: "/opt/kafka/LICENSE"
-    topic: my-topic
+    name: "iot-frames-mongodb-sink"
+    connector.class: "com.mongodb.kafka.connect.MongoSinkConnector"
+    tasks.max: 1
+    topics: "iot-frames"
+    connection.uri: "mongodb://devroot:devroot@mongo:27017"
+    database: "iot"
+    collection: "iot-frames"
+    value.converter: "org.apache.kafka.connect.json.JsonConverter"
+    key.converter: "org.apache.kafka.connect.json.JsonConverter"
+    value.converter.schemas.enable: false
+    key.converter.schemas.enable: false
+
+  
