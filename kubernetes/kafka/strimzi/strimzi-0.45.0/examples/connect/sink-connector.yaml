@@ -1,0 +1,21 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: iot-frames-mongodb-sink
+  labels:
+    strimzi.io/cluster: my-connect
+spec:
+  class: org.apache.kafka.connect.file.FileStreamSinkConnector 
+  tasksMax: 1
+  config:
+    name: "iot-frames-mongodb-sink"
+    connector.class: "com.mongodb.kafka.connect.MongoSinkConnector"
+    tasks.max: 1
+    topics: "iot-frames"
+    connection.uri: "mongodb://devroot:devroot@mongo:27017"
+    database: "iot"
+    collection: "iot-frames"
+    value.converter: "org.apache.kafka.connect.json.JsonConverter"
+    key.converter: "org.apache.kafka.connect.json.JsonConverter"
+    value.converter.schemas.enable: false
+    key.converter.schemas.enable: false
