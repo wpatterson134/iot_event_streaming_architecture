@@ -3,7 +3,7 @@ kind: KafkaConnector
 metadata:
   name: iot-frames-mongodb-sink
   labels:
-    strimzi.io/cluster: my-connect
+    strimzi.io/cluster: my-cluster
 spec:
   class: org.apache.kafka.connect.file.FileStreamSinkConnector 
   tasksMax: 1
