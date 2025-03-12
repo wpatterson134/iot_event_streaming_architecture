@@ -15,7 +15,7 @@ spec:
     trustedCertificates:
       - secretName: my-cluster-cluster-ca-cert
         pattern: "*.crt"
-  image: kula/kafka-mongodb-connector:latest
+  image: wpatterson134/kafka-connect-mongodb
   config:
     group.id: connect-cluster
     offset.storage.topic: connect-cluster-offsets
