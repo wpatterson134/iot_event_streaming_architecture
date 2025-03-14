@@ -1,8 +1,7 @@
 FROM confluentinc/cp-server-connect-base:latest
 
-# Install dependencies using apk (Alpine-based image)
-# Install dependencies using yum (for Red Hat-based images)
-RUN yum update -y && yum install -y curl unzip
+
+RUN sudo yum update -y && sudo yum install -y curl unzip
 
 # Install confluent-hub CLI
 RUN curl -sO http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz && \
