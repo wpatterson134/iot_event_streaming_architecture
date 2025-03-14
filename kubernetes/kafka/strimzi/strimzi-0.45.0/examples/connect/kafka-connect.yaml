@@ -1,28 +1,44 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnect
 metadata:
-  name: my-cluster
-  annotations:
- # use-connector-resources configures this KafkaConnect
- # to use KafkaConnector resources to avoid
- # needing to call the Connect REST API directly
-   strimzi.io/use-connector-resources: "true"
+  name: my-kafka-connect
+  labels:
+    strimzi.io/cluster: my-connect-cluster
 spec:
-  version: 3.9.0
+  version: 3.5.0
   replicas: 1
-  bootstrapServers: my-cluster-kafka-bootstrap:9093
-  tls:
-    trustedCertificates:
-      - secretName: my-cluster-cluster-ca-cert
-        pattern: "*.crt"
-  image: confluentinc/cp-kafka-connect:latest
+  bootstrapServers: my-cluster-kafka-bootstrap:9092
+  image: confluentinc/cp-kafka-connect:latest  # Your Confluent image
   config:
-    group.id: connect-cluster
-    offset.storage.topic: connect-cluster-offsets
-    config.storage.topic: connect-cluster-configs
-    status.storage.topic: connect-cluster-status
-    # -1 means it will use the default replication factor configured in the broker
-    config.storage.replication.factor: -1
-    offset.storage.replication.factor: -1
-    status.storage.replication.factor: -1
-    plugin.path: "/usr/share/java"
+    group.id: "connect-cluster"
+    offset.storage.topic: "connect-offsets"
+    config.storage.topic: "connect-configs"
+    status.storage.topic: "connect-status"
+    key.converter: "org.apache.kafka.connect.storage.StringConverter"
+    value.converter: "org.apache.kafka.connect.json.JsonConverter"
+    value.converter.schemas.enable: "false"
+    key.converter.schemas.enable: "false"
+    plugin.path: "/usr/share/java,/opt/kafka/plugins,/etc/kafka-connect/jars,/data/connectors"  # Custom plugin path
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "1"
+      memory: "2Gi"
+  template:
+    pod:
+      volumes:
+        - name: kafka-plugins
+          emptyDir: {}  # Temporary volume for Kafka's plugin directory
+        - name: custom-connectors
+          hostPath:
+            path: /data/connectors  # Mount custom connector path if you have one
+            type: Directory
+      containers:
+        - name: kafka-connect
+          volumeMounts:
+            - name: kafka-plugins
+              mountPath: /opt/kafka/plugins  # Mount the plugins path
+            - name: custom-connectors
+              mountPath: /data/connectors  # Mount your custom connectors directory
