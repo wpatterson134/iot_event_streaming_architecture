@@ -1,15 +1,13 @@
-# Use the Confluent base image for Kafka Connect
+# Use the Confluent Kafka Connect base image
 FROM confluentinc/cp-server-connect-base:latest
 
-# Install dependencies and Confluent CLI using Alpine's package manager
-RUN apk add --no-cache \
-    curl \
-    gnupg \
-    bash \
-    && echo "https://packages.confluent.io/deb/7.0 stable main" > /etc/apt/sources.list.d/confluent.list \
-    && curl -fsSL https://packages.confluent.io/deb/7.0/archive.key | tee /etc/apt/trusted.gpg.d/confluent.asc \
-    && apk add confluent-cli \
-    && rm -rf /var/cache/apk/*
+# Install dependencies and Confluent CLI using YUM (for RHEL-based images)
+RUN yum install -y curl gnupg yum-utils && \
+    rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key && \
+    yum-config-manager --add-repo https://packages.confluent.io/confluent-cli/rpm/confluent-cli.repo && \
+    yum clean all && \
+    yum install -y confluent-cli && \
+    rm -rf /var/cache/yum
 
 # Install Kafka Connect plugins
 RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest \
