@@ -1,5 +1,5 @@
 # Use the Confluent Kafka Connect base image
-FROM confluentinc/cp-kafka-connect:latest
+FROM quay.io/strimzi/kafka:0.45.0-kafka-3.9.0
 
 USER root
 # Install dependencies and Confluent CLI using YUM (for RHEL-based images)

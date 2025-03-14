@@ -8,7 +8,7 @@ spec:
   version: 3.5.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
-  image: confluentinc/cp-kafka-connect:latest  # Your Confluent image
+  image: wpatterson134/kafka-connect-mongodb:latest  # Your Confluent image
   config:
     group.id: "connect-cluster"
     offset.storage.topic: "connect-offsets"
@@ -19,26 +19,4 @@ spec:
     value.converter.schemas.enable: "false"
     key.converter.schemas.enable: "false"
     plugin.path: "/usr/share/java,/opt/kafka/plugins,/etc/kafka-connect/jars,/data/connectors"  # Custom plugin path
-  resources:
-    requests:
-      cpu: "500m"
-      memory: "1Gi"
-    limits:
-      cpu: "1"
-      memory: "2Gi"
-  template:
-    pod:
-      volumes:
-        - name: kafka-plugins
-          emptyDir: {}  # Temporary volume for Kafka's plugin directory
-        - name: custom-connectors
-          hostPath:
-            path: /data/connectors  # Mount custom connector path if you have one
-            type: Directory
-      containers:
-        - name: kafka-connect
-          volumeMounts:
-            - name: kafka-plugins
-              mountPath: /opt/kafka/plugins  # Mount the plugins path
-            - name: custom-connectors
-              mountPath: /data/connectors  # Mount your custom connectors directory
+  
