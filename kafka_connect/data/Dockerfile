@@ -11,5 +11,5 @@ RUN yum install -y curl gnupg yum-utils && \
     rm -rf /var/cache/yum
 
 # Install Kafka Connect plugins
-RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --no-prompt \
-    && confluent connect plugin install confluentinc/kafka-connect-prometheus-metrics:latest --no-prompt
+RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --force \
+    && confluent connect plugin install confluentinc/kafka-connect-prometheus-metrics:latest --force
