@@ -1,6 +1,6 @@
 FROM confluentinc/cp-server-connect-base:latest
 
-
+USER root 
 RUN sudo yum update -y && sudo yum install -y curl unzip
 
 # Install confluent-hub CLI
