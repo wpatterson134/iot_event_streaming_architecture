@@ -1,4 +1,5 @@
-FROM quay.io/strimzi/kafka:latest-kafka-4.0.0-amd64
-USER root:root
-COPY ./mongodb-kafka-connect-mongodb-1.15.0/ /opt/kafka/plugins/
-USER 1001
+FROM confluentinc/cp-kafka-connect:latest
+
+RUN   confluent-hub install --no-prompt hpgrahsl/kafka-connect-mongodb:1.1.0 \
+   && confluent-hub install --no-prompt confluentinc/kafka-connect-prometheus-metrics:1.0.0 \
+   && confluent-hub install --no-prompt confluentinc/kafka-connect-mqtt:1.2.0
