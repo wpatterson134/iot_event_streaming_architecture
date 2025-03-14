@@ -1,5 +1,8 @@
 FROM confluentinc/cp-server-connect-base:latest
 
+# Install dependencies using apk (Alpine-based image)
+RUN apk update && apk add --no-cache curl unzip
+
 RUN apt-get update && apt-get install -y curl unzip && \
     curl -sO http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz && \
     mkdir -p /usr/local/confluent-hub && \
