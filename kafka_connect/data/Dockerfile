@@ -1,5 +1,5 @@
 # Use the Confluent Kafka Connect base image
-FROM confluentinc/cp-server-connect-base:latest
+FROM confluentinc/cp-kafka-connect:latest
 
 USER root
 # Install dependencies and Confluent CLI using YUM (for RHEL-based images)
