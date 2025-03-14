@@ -1,6 +1,7 @@
 # Use the Confluent Kafka Connect base image
 FROM confluentinc/cp-server-connect-base:latest
 
+USER root
 # Install dependencies and Confluent CLI using YUM (for RHEL-based images)
 RUN yum install -y curl gnupg yum-utils && \
     rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key && \
