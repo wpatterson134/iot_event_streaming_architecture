@@ -8,6 +8,6 @@ ENV CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components"
 
 # Install Kafka Connect plugins
 RUN confluent-hub install --no-prompt confluentinc/kafka-connect-mqtt:latest \
-    && confluent-hub install confluentinc/kafka-connect-prometheus-metrics:latest \
-    && confluent-hub install mongodb/kafka-connect-mongodb:latest
+    && confluent-hub install --no-prompt confluentinc/kafka-connect-prometheus-metrics:latest \
+    && confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
 
