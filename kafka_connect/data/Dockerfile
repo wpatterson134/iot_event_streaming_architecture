@@ -4,8 +4,11 @@ FROM strimzi/kafka-connect:latest
 # Set the user to root
 USER root
 
-# Install Confluent Hub CLI
-RUN curl -sL https://github.com/confluentinc/confluent-hub-client/releases/download/7.1.0/confluent-hub-client-7.1.0.tar.gz | tar xz -C /usr/local/bin
+# Install dependencies for downloading and extracting Confluent Hub CLI
+RUN yum install -y wget tar && \
+    wget https://github.com/confluentinc/confluent-hub-client/releases/download/7.1.0/confluent-hub-client-7.1.0.tar.gz && \
+    tar -xvzf confluent-hub-client-7.1.0.tar.gz -C /usr/local/bin && \
+    rm confluent-hub-client-7.1.0.tar.gz
 
 # Install the Kafka Connect plugins using Confluent Hub CLI
 RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest && \
@@ -20,6 +23,3 @@ USER kafka
 
 # Default command to keep container running
 CMD ["bash"]
-
-
-
