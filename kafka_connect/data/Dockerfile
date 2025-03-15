@@ -7,10 +7,10 @@ USER root
 # Install necessary tools on UBI8 (which has a working yum)
 RUN yum install -y wget tar curl && yum clean all
 
-# Download and extract the Confluent Hub CLI with the correct version
-RUN wget https://github.com/confluentinc/confluent-hub-client/releases/download/7.1.1/confluent-hub-client-7.1.1.tar.gz -O /tmp/confluent-hub-client.tar.gz && \
+# Download and extract the Confluent Hub CLI using version 7.0.1
+RUN wget https://github.com/confluentinc/confluent-hub-client/releases/download/7.0.1/confluent-hub-client-7.0.1.tar.gz -O /tmp/confluent-hub-client.tar.gz && \
     tar -xvzf /tmp/confluent-hub-client.tar.gz -C /tmp && \
-    mv /tmp/confluent-hub-client-7.1.1/confluent-hub /usr/local/bin/ && \
+    mv /tmp/confluent-hub-client-7.0.1/confluent-hub /usr/local/bin/ && \
     chmod +x /usr/local/bin/confluent-hub
 
 # Use the confluent-hub CLI to install the plugins
