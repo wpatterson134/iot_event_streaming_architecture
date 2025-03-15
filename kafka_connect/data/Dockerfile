@@ -11,6 +11,10 @@ RUN rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key \
     && yum-config-manager --add-repo https://packages.confluent.io/confluent-cli/rpm/confluent-cli.repo \
     && yum clean all -y \
     && yum install -y confluent-cli
+
+ENV CONFLUENT_HOME=/usr/local/bin/confluent
+ENV CONFLUENT_PLUGIN_DIR=/usr/local/share/confluent
+
 # Install Kafka Connect plugins
 RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --force \
     && confluent connect plugin install confluentinc/kafka-connect-prometheus-metrics:latest --force \
