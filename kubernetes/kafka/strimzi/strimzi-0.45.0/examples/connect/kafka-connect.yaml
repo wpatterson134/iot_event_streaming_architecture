@@ -8,7 +8,7 @@ spec:
   version: 3.5.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
-  image: wpatterson134/kafka-connect-mongdb:latest # Your Confluent image
+  image: wpatterson134/kafka-connect-mongdbo:latest # Your Confluent image
   config:
     group.id: "connect-cluster"
     offset.storage.topic: "connect-offsets"
