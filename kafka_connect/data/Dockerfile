@@ -11,6 +11,9 @@ RUN microdnf install -y gnupg wget \
     && rm -f /tmp/confluent-cli.tar.gz \
     && microdnf clean all
 
+# Set the PATH for the shell to include /usr/local/bin
+ENV PATH="/usr/local/bin:${PATH}"
+
 # Install Kafka Connect plugins
 RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --force \
     && confluent connect plugin install confluentinc/kafka-connect-prometheus-metrics:latest --force \
