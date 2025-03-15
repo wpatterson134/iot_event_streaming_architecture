@@ -7,9 +7,9 @@ USER root
 RUN microdnf install yum -y
 
 RUN rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key \
-    && yum install yum-utils \
+    && yum install -y yum-utils \
     && yum-config-manager --add-repo https://packages.confluent.io/confluent-cli/rpm/confluent-cli.repo \
-    && yum clean all \
+    && yum clean all -y \
     && yum install -y confluent-cli
 # Install Kafka Connect plugins
 RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --force \
