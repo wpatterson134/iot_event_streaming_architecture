@@ -3,10 +3,17 @@ FROM quay.io/strimzi/kafka:0.45.0-kafka-3.9.0
 
 USER root
 
-RUN microdnf install -y gnupg && \
+# Install dependencies
+RUN microdnf install -y gnupg wget && \
     rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key && \
-    microdnf install -y confluent-platform && \
+    wget https://packages.confluent.io/confluent-cli/rpm/latest/confluent-cli-archive.tar.gz -O /tmp/confluent-cli.tar.gz && \
+    tar -xzf /tmp/confluent-cli.tar.gz -C /usr/local/bin && \
+    rm -f /tmp/confluent-cli.tar.gz && \
     microdnf clean all
+
+# Verify installation
+RUN confluent --version
+
 
 
 
