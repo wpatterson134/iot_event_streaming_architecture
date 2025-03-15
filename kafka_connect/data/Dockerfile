@@ -4,13 +4,13 @@ FROM quay.io/strimzi/kafka:0.45.0-kafka-3.9.0
 # Set the user to root
 USER root
 
-RUN microdnf install yum
+RUN microdnf install yum -y
 
 RUN rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key \
     && yum install yum-utils \
     && yum-config-manager --add-repo https://packages.confluent.io/confluent-cli/rpm/confluent-cli.repo \
     && yum clean all \
-    && yum install confluent-cli
+    && yum install confluent-cli -y
 # Install Kafka Connect plugins
 RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --force \
     && confluent connect plugin install confluentinc/kafka-connect-prometheus-metrics:latest --force \
