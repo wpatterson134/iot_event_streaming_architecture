@@ -8,7 +8,7 @@ spec:
   version: 3.5.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
-  image: quay.io/strimzi/kafka:0.45.0-kafka-3.9.0  # Your Confluent image
+  image: strimzi/kafka-connect:latest # Your Confluent image
   config:
     group.id: "connect-cluster"
     offset.storage.topic: "connect-offsets"
