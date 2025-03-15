@@ -5,7 +5,7 @@ USER root
 
 RUN microdnf install -y gnupg && \
     rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key && \
-    microdnf install -y confluent-cli && \
+    microdnf install -y confluent-platform && \
     microdnf clean all
 
 
