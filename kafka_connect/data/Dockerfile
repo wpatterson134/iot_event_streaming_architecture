@@ -1,5 +1,5 @@
 # Use the Strimzi Kafka base image
-FROM confluentinc/cp-kafka-connect:7.1.0-1-ubi8
+FROM strimzi/kafka-connect:latest
 
 # Set the user to root
 USER root
