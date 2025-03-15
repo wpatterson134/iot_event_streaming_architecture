@@ -1,10 +1,8 @@
 # Use the Strimzi Kafka base image
-FROM confluentinc/cp-kafka-connect-base:latest
+FROM confluentinc/cp-kafka-connect:7.1.0-1-ubi8
 
 # Set the user to root
 USER root
 
 # Install Kafka Connect plugins
-RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --force \
-    && confluent connect plugin install confluentinc/kafka-connect-prometheus-metrics:latest --force \
-    && confluent connect plugin install mongodb/kafka-connect-mongodb:latest --force
+RUN confluent-hub install --no-prompt confluentinc/kafka-connect-mqtt:latest \
