@@ -6,11 +6,13 @@ USER root
 
 # Install required tools using microdnf
 RUN microdnf install -y gnupg wget \
-    && rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key \
-    && wget https://packages.confluent.io/confluent-cli/rpm/latest/confluent-cli.rpm -O /tmp/confluent-cli.rpm \
-    && rpm -ivh /tmp/confluent-cli.rpm \
-    && rm -f /tmp/confluent-cli.rpm \
+    && wget https://packages.confluent.io/confluent-cli/archives/latest/confluent_linux_amd64.tar.gz -O /tmp/confluent-cli.tar.gz \
+    && tar -xzf /tmp/confluent-cli.tar.gz -C /usr/local/bin \
+    && rm -f /tmp/confluent-cli.tar.gz \
     && microdnf clean all
+
+# Add /usr/local/bin to PATH
+ENV PATH="/usr/local/bin:${PATH}"
 
 # Install Kafka Connect plugins
 RUN confluent connect plugin install confluentinc/kafka-connect-mqtt:latest --force \
