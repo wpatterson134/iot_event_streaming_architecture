@@ -6,8 +6,7 @@ USER root
 
 # Install required tools using microdnf
 RUN microdnf install -y gnupg wget \
-    && rpm --import https://packages.confluent.io/confluent-cli/rpm/archive.key \
-    && wget https://packages.confluent.io/confluent-cli/rpm/latest/confluent-cli-archive.tar.gz -O /tmp/confluent-cli.tar.gz \
+    && wget https://packages.confluent.io/confluent-cli/archives/latest/confluent_linux_amd64.tar.gz -O /tmp/confluent-cli.tar.gz \
     && tar -xzf /tmp/confluent-cli.tar.gz -C /usr/local/bin \
     && rm -f /tmp/confluent-cli.tar.gz \
     && microdnf clean all
