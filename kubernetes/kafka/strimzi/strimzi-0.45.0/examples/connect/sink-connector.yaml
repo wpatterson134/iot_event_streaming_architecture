@@ -9,7 +9,7 @@ spec:
   tasksMax: 1
   config:
     topics: "iot-frames"
-    connection.uri: "mongodb://admin:dir823rEg@mongo:27017"
+    connection.uri: "mongodb://admin:password@mongo-svc.mongodb.svc.cluster.local:27017/"
     database: "iot"
     collection: "iot-frames"
     value.converter: "org.apache.kafka.connect.json.JsonConverter"
