@@ -30,7 +30,7 @@ spec:
   tasksMax: 1
   config:
     topics: "iot-aggregate-metrics-sensor"
-    connection.uri: "mongodb://devroot:devroot@mongo:27017"
+    connection.uri: "mongodb://admin:dir823rEg@mongo-svc.mongodb.svc.cluster.local:27017/admin?authMechanism=SCRAM-SHA-256"
     database: "iot"
     collection: iot_aggregate_metrics_sensor"
     value.converter: "org.apache.kafka.connect.json.JsonConverter"
