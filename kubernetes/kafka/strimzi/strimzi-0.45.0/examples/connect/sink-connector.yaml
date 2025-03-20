@@ -70,6 +70,7 @@ spec:
   class: io.confluent.connect.prometheus.PrometheusMetricsSinkConnector 
   tasksMax: 1
   config:
+    topics: "iot-metrics-time-series"
     confluent.topic.bootstrap.servers: "kafka:9092"
     prometheus.scrape.url: "http://0.0.0.0:8084/iot-metrics-time-series"
     prometheus.listener.url: "http://0.0.0.0:8084/iot-metrics-time-series"
