@@ -5,12 +5,9 @@ metadata:
   labels:
     strimzi.io/cluster: my-connect-cluster
 spec:
-  class: org.apache.kafka.connect.file.FileStreamSinkConnector 
+  class: com.mongodb.kafka.connect.MongoSinkConnector 
   tasksMax: 1
   config:
-    name: "iot-frames-mongodb-sink"
-    connector.class: "com.mongodb.kafka.connect.MongoSinkConnector"
-    tasks.max: 1
     topics: "iot-frames"
     connection.uri: "mongodb://admin:dir823rEg@mongo:27017"
     database: "iot"
@@ -19,3 +16,4 @@ spec:
     key.converter: "org.apache.kafka.connect.json.JsonConverter"
     value.converter.schemas.enable: false
     key.converter.schemas.enable: false
+
