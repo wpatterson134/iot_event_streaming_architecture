@@ -37,6 +37,29 @@ spec:
     key.converter": "org.apache.kafka.connect.storage.StringConverter"
     value.converter.schemas.enable: false
     key.converter.schemas.enable: false
+---
+
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: iot-aggregate-metrics-place-mongodb-sink
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: com.mongodb.kafka.connect.MongoSinkConnector 
+  tasksMax: 1
+  config:
+    topics: "iot-aggregate-metrics-place"
+    connection.uri: "mongodb://admin:dir823rEg@mongo-svc.mongodb.svc.cluster.local:27017/admin?authMechanism=SCRAM-SHA-256"
+    database: "iot"
+    collection: iot_aggregate_metrics_place"
+    value.converter: "org.apache.kafka.connect.json.JsonConverter"
+    key.converter": "org.apache.kafka.connect.storage.StringConverter"
+    value.converter.schemas.enable: false
+    key.converter.schemas.enable: false
+
+
+
 
 
 
