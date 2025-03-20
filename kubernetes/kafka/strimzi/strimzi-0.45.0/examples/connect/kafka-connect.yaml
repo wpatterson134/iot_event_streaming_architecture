@@ -2,6 +2,8 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnect
 metadata:
   name: my-connect-cluster
+  annotations:
+    strimzi.io/use-connector-resources: "true"
   labels:
     strimzi.io/cluster: my-connect-cluster
 spec:
