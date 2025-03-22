@@ -26,9 +26,6 @@ spec:
           # This instructs the docker image to use Caddy to proxy traffic to kafka-topics-ui.
         ports:
         - containerPort: 8000 
-        limits:
-          memory: #TODO: CPU and mem limits
-          cpu:
       # kafka-topics-ui relies upon Kafka REST.
     # This will instruct docker to wait until those services are up
     # before attempting to start kafka-topics-ui.
