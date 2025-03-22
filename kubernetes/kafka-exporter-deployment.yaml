@@ -24,3 +24,19 @@ spec:
           ports:
             - containerPort: 9308
           restartPolicy: Always
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-exporter
+spec:
+  selector:
+    app: kafka-exporter
+  ports:
+    - protocol: TCP
+      port: 9308    # Service port
+      targetPort: 9308  # Container's port
+  type: ClusterIP  # Internal access within the cluster
