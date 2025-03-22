@@ -25,7 +25,7 @@ spec:
           value: "zookeeper:2181"
         # The address on which Kafka REST will listen for API requests.
         - name: KAFKA_REST_LISTENERS
-          value: "http://0.0.0.0:8082/"
+          value: "http://0.0.0.0:8082"
          # Required. This is the hostname used to generate absolute URLs in responses.
       # It defaults to the Java canonical hostname for the container, which might
       # not be resolvable in a Docker environment.

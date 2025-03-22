@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - name: kafka-exporter
-          hostname: kafka-exporter
           image: bitnami/kafka-exporter:latest
           args:
             - '--kafka.server=kafka:9092'
@@ -23,7 +22,7 @@ spec:
             - '--log.level=debug'
           ports:
             - containerPort: 9308
-          restartPolicy: Always
+         
 
 
 ---
