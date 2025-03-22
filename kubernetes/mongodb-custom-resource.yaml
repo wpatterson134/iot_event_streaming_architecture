@@ -12,16 +12,16 @@ spec:
       modes: ["SCRAM-SHA-1", "SCRAM-SHA-256"]
   users:
     - name: devroot
-      db: iotframes
+      db: admin
       passwordSecretRef: # a reference to the secret that will be used to generate the user's password
         name: my-user-password
       roles:
         - name: clusterAdmin
-          db: iotframes
+          db: admin
         - name: userAdminAnyDatabase
-          db: iotframes
+          db: admin
         - name: root
-          db: iotframes
+          db: admin
       scramCredentialsSecretName: my-scram
   additionalMongodConfig:
     storage.wiredTiger.engineConfig.journalCompressor: zlib
