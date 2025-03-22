@@ -9,7 +9,7 @@ spec:
   tasksMax: 1
   config:
     topics: "iot-frames"
-    connection.uri: "mongodb://admin:dir823rEg@mongo-svc.mongodb.svc.cluster.local:27017/admin?authMechanism=SCRAM-SHA-256"
+    connection.uri: "mongodb://devroot:devroot@mongo-svc.mongodb.svc.cluster.local:27017/"
     database: "iot"
     collection: "iot-frames"
     value.converter: "org.apache.kafka.connect.json.JsonConverter"
@@ -30,7 +30,7 @@ spec:
   tasksMax: 1
   config:
     topics: "iot-aggregate-metrics-sensor"
-    connection.uri: "mongodb://admin:dir823rEg@mongo-svc.mongodb.svc.cluster.local:27017/admin?authMechanism=SCRAM-SHA-256"
+    connection.uri: "mongodb://devroot:devroot@mongo-svc.mongodb.svc.cluster.local:27017/"
     database: "iot"
     collection: iot_aggregate_metrics_sensor"
     value.converter: "org.apache.kafka.connect.json.JsonConverter"
@@ -50,7 +50,7 @@ spec:
   tasksMax: 1
   config:
     topics: "iot-aggregate-metrics-place"
-    connection.uri: "mongodb://admin:dir823rEg@mongo-svc.mongodb.svc.cluster.local:27017/admin?authMechanism=SCRAM-SHA-256"
+    connection.uri: "mongodb://devroot:devroot@mongo-svc.mongodb.svc.cluster.local:27017/"
     database: "iot"
     collection: iot_aggregate_metrics_place"
     value.converter: "org.apache.kafka.connect.json.JsonConverter"
