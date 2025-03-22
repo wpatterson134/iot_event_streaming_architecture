@@ -17,9 +17,6 @@ spec:
       containers:
       - name: kafka-connect-ui
         image: landoop/kafka-connect-ui:latest
-        limits:
-          memory: #TODO: limits and memory
-          cpu:
         ports:
         - containerPort: 8000
         env:
