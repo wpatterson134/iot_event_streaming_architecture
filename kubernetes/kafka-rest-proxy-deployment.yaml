@@ -41,10 +41,6 @@ spec:
     # before attempting to start Kafka REST.
         ports:
         - containerPort: 8082
-        
-        limits:
-          cpu:
-          memory:
       # TODO: figure out "depends_on" param, since
       # this deployment depends on both Zookeeper 
       # and Kafka
