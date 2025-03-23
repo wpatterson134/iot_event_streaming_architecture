@@ -35,7 +35,7 @@ spec:
       # the addresses provided here are used to initially connect to the cluster,
       # after which the cluster will dynamically change. Thanks, ZooKeeper!
         - name: KAFKA_REST_BOOTSTRAP_SERVERS
-          value: "kafka:9092"
+          value: "PLAINTEXT://my-cluster-kafka-bootstrap:9092"
         # Kafka REST relies upon Kafka, ZooKeeper
     # This will instruct docker to wait until those services are up
     # before attempting to start Kafka REST.
