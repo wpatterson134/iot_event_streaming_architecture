@@ -15,6 +15,6 @@ kubectl apply -f mongodb-custom-resource.yaml -n mongodb
 kubectl apply -f sensor-config.yaml -n mongodb
 kubectl apply -f mongo-express-deployment.yaml -n mongodb
 
-#connect ui and topics ui
+#Kafka connect ui and kafka topics ui
 kubectl apply -f kafka-topics-ui-deployment.yaml -n kafka
 kubectl apply -f kafka-connect-ui-deployment.yaml -n kafka
