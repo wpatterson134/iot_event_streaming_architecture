@@ -16,7 +16,7 @@ spec:
   class: io.confluent.connect.mqtt.MqttSourceConnector
   tasksMax: 1
   config:
-    mqtt.server.uri: "tcp://mosquitto:1883"
+    mqtt.server.uri: "tcp://mosquitto-service.sensors.svc:1883"
     mqtt.topics: "iot-frames"
     mqtt.qos: 1
     kafka.topic: "iot-frames"
