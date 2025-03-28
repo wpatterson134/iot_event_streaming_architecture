@@ -30,3 +30,18 @@ spec:
           image: eclipse-mosquitto:latest
           ports:
             - containerPort: 1883
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mosquitto-service
+spec:
+  selector:
+    app: mosquitto
+  ports:
+    - protocol: TCP
+      port: 1883  # The service port exposed within the cluster
+      targetPort: 1883  # The container port in the pod
+  type: ClusterIP  # Internal communication within the cluster
