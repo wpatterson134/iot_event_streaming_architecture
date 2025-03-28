@@ -31,4 +31,3 @@ spec:
                 configMapKeyRef:
                   name: sensor-config
                   key: IOT_SENSOR_2_PLACE_ID
-          restartPolicy: Always
