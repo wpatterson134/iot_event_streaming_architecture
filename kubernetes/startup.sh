@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 kubectl create ns kafka && kubectl create ns mongodb
 
