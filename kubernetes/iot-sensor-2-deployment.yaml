@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: iot-sensor-2
-          image: ssanchez11/iot_sensor:0.0.1-SNAPSHOT
+          image: wpatterson134/iot-sensor:latest
           env:
             - name: sensor.id
               valueFrom:

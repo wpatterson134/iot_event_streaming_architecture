@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: iot-processor
-          image: ssanchez11/iot_processor:0.0.1-SNAPSHOT
+          image: wpatterson134/iot-processor:latest
           ports:
           - containerPort: 8080
 
