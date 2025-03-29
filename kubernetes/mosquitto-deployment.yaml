@@ -26,13 +26,21 @@ spec:
           image: eclipse-mosquitto:latest
           ports:
             - containerPort: 1883
+          volumeMounts:
+            - name: mosquitto-config-volume
+              mountPath: /mosquitto/config/mosquitto.conf
+              subPath: mosquitto.conf
+      volumes:
+        - name: mosquitto-config-volume
+          configMap:
+            name: mosquitto-config
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: mosquitto-service
+  name: mosquitto
 spec:
   selector:
     app: mosquitto
@@ -41,3 +49,15 @@ spec:
       port: 1883  # The service port exposed within the cluster
       targetPort: 1883  # The container port in the pod
   type: ClusterIP  # Internal communication within the cluster
+
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mosquitto-config
+data:
+  mosquitto.conf: |
+    listener 1883 0.0.0.0
+    allow_anonymous true
