@@ -20,5 +20,5 @@ spec:
     value.converter: "org.apache.kafka.connect.json.JsonConverter"
     value.converter.schemas.enable: "false"
     key.converter.schemas.enable: "false"
-    plugin.path: "/usr/share/java,user/share/confluent-hub-components"  # Custom plugin path
+    plugin.path: "/usr/share/java,user/share/confluent-hub-components,/opt/kafka/plugins"  # Custom plugin path
   
