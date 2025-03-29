@@ -13,7 +13,7 @@ metadata:
     # set to true.
     strimzi.io/cluster: my-connect-cluster
 spec:
-  class: io.confluent.connect.mqtt.MqttSourceConnector
+  class: io.lenses.streamreactor.connect.mqtt.source.MqttSourceConnector
   tasksMax: 1
   config:
     mqtt.server.uri: "tcp://mosquitto-service.sensors.svc:1883"
