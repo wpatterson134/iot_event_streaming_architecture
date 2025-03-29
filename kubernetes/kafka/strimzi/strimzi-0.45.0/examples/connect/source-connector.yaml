@@ -16,13 +16,13 @@ spec:
   class: io.lenses.streamreactor.connect.mqtt.source.MqttSourceConnector
   tasksMax: 1
   config:
-    mqtt.server.uri: "tcp://mosquitto-service.sensors.svc:1883"
+    # mqtt.server.uri: "tcp://mosquitto-service.sensors.svc.cluster.local:1883"
     mqtt.topics: "iot-frames"
     mqtt.qos: 1
     kafka.topic: "iot-frames"
     connect.mqtt.kcql: INSERT INTO mqtt SELECT * FROM /mjson WITHCONVERTER=`io.lenses.streamreactor.connect.converters.source.JsonSimpleConverter`
     connect.mqtt.client.id: dm_source_id
-    connect.mqtt.hosts: "tcp://mosquitto-service.sensors.svc:1883"
+    connect.mqtt.hosts: "tcp://mosquitto-service.sensors.svc.cluster.local:1883"
     connect.mqtt.service.quality: 1
     value.converter: "org.apache.kafka.connect.converters.ByteArrayConverter"
     key.converter: "org.apache.kafka.connect.json.JsonConverter"
