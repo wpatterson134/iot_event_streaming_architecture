@@ -1,3 +1,9 @@
+# Stage 1: Use the Strimzi image as a source for artifacts
+FROM quay.io/strimzi/kafka:0.45.0-kafka-3.9.0 as strimzi
+
+
+RUN ls -ls /opt/kafka/
+
 FROM confluentinc/cp-kafka-connect:7.1.0-1-ubi8
 
 USER root:root
