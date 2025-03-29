@@ -23,6 +23,7 @@ spec:
     connect.mqtt.kcql: INSERT INTO mqtt SELECT * FROM /mjson WITHCONVERTER=`io.lenses.streamreactor.connect.converters.source.JsonSimpleConverter`
     connect.mqtt.client.id: dm_source_id
     connect.mqtt.hosts: "tcp://mosquitto-service.sensors.svc:1883"
+    connect.mqtt.service.quality: 1
     value.converter: "org.apache.kafka.connect.converters.ByteArrayConverter"
     key.converter: "org.apache.kafka.connect.json.JsonConverter"
     key.converter.schemas.enable: false
