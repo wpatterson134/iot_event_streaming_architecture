@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  namespace: kafka  # Make sure this matches your Kafka namespace
+spec:
+  ports:
+    - port: 9092
+      targetPort: 9092
+  selector:
+    strimzi.io/cluster: my-cluster
+    strimzi.io/kind: Kafka
+
