@@ -7,7 +7,7 @@ spring:
   kafka:
     client-id: iot-processor
     bootstrap-servers:
-      - kafka:9092
+      - my-cluster-kafka-bootstrap:9092
     template:
       default-topic: iot-frames
     consumer:
