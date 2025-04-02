@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 
 @SpringBootApplication
-@EnableConfigurationProperties(Properties.class)
+@EnableConfigurationProperties
 public class IotframesingestApplication {
 
     public static void main(String[] args) {
