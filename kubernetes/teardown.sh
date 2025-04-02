@@ -18,7 +18,7 @@ kubectl delete -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/kafka-connect.
 kubectl delete -f ./kafka/strimzi/strimzi-0.45.0/examples/kafka/kafka-persistent.yaml -n kafka
 kubectl delete -f ./kafka/strimzi/strimzi-0.45.0/install/cluster-operator -n kafka
 
-kubectl delete ns kafka && kubectl delete ns mongodb
+#kubectl delete ns kafka && kubectl delete ns mongodb
 
 
 
