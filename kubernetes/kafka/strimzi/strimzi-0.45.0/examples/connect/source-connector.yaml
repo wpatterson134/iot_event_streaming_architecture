@@ -13,23 +13,19 @@ metadata:
     # set to true.
     strimzi.io/cluster: my-connect-cluster
 spec:
-  class: io.lenses.streamreactor.connect.mqtt.source.MqttSourceConnector
+  class: io.confluent.connect.mqtt.MqttSourceConnector
   tasksMax: 1
   config:
-    # mqtt.server.uri: "tcp://mosquitto-service.sensors.svc.cluster.local:1883"
+    mqtt.server.uri: "tcp://mosquitto:1883"
     mqtt.topics: "iot-frames"
     mqtt.qos: 1
     kafka.topic: "iot-frames"
-    connect.mqtt.kcql: INSERT INTO mqtt SELECT * FROM /mjson WITHCONVERTER=`io.lenses.streamreactor.connect.converters.source.JsonSimpleConverter`
-    connect.mqtt.client.id: dm_source_id
-    connect.mqtt.hosts: "tcp://mosquitto:1883"
-    connect.mqtt.service.quality: 1
     value.converter: "org.apache.kafka.connect.converters.ByteArrayConverter"
     key.converter: "org.apache.kafka.connect.json.JsonConverter"
     key.converter.schemas.enable: false
     converter.encoding: "UTF-8"
     value.converter.schemas.enable: false
-    confluent.topic.bootstrap.servers: "kafka:9092"
+    confluent.topic.bootstrap.servers: "my-cluster-kafka-bootstrap:9092"
     confluent.topic.replication.factor: 1
     transforms: "createMap,createKey,extractString"
     transforms.createMap.type: "org.apache.kafka.connect.transforms.HoistField$Value"
@@ -39,4 +35,25 @@ spec:
     transforms.extractString.type: "org.apache.kafka.connect.transforms.ExtractField$Value"
     transforms.extractString.field: "id"
 
-  
+  # name": "mqtt-source",
+  #   "config": {
+  #       "connector.class": "io.confluent.connect.mqtt.MqttSourceConnector",
+  #       "tasks.max": 1,
+  #       "mqtt.server.uri": "tcp://mosquitto:1883",
+  #       "mqtt.topics": "iot-frames",
+  #       "mqtt.qos": 1,
+  #       "kafka.topic": "iot-frames",
+  #       "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+  #       "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+  #       "key.converter.schemas.enable":false,
+  #       "converter.encoding": "UTF-8",
+  #       "value.converter.schemas.enable": false,
+  #       "confluent.topic.bootstrap.servers": "kafka:9092",
+  #       "confluent.topic.replication.factor": 1,
+  #       "transforms":"createMap,createKey,extractString",
+  #       "transforms.createMap.type":"org.apache.kafka.connect.transforms.HoistField$Value",
+  #       "transforms.createMap.field":"id",
+  #       "transforms.createKey.type":"org.apache.kafka.connect.transforms.ValueToKey",
+  #       "transforms.createKey.fields":"id",
+  #       "transforms.extractString.type":"org.apache.kafka.connect.transforms.ExtractField$Value",
+  #       "transforms.extractString.field":"id"
