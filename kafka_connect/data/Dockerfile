@@ -1,7 +1,7 @@
-FROM quay.io/strimzi/kafka:0.45.0-kafka-3.9.0
+FROM quay.io/strimzi/kafka:0.45.0-kafka-3.8.0
 USER root:root
-COPY ./confluent-7.1.0 /opt/kafka/confluent-7.1.0
-ENV CONFLUENT_HOME=/opt/kafka/confluent-7.1.0
+COPY ./confluent-7.9.0 /opt/kafka/confluent-7.9.0
+ENV CONFLUENT_HOME=/opt/kafka/confluent-7.9.0
 ENV PATH=$PATH:$CONFLUENT_HOME/bin
 RUN confluent --help
 # ENV CONFLUENT_CLOUD_EMAIL=wpatterson134@gmail.com
