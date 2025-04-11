@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#IoT sensors and processor
+kubectl delete -f sensor-config.yaml -n kafka
+kubectl delete -f iot-processor-deployment.yaml -n kafka
+kubectl delete -f iot-sensor-1-deployment.yaml -n kafka
+kubectl delete -f iot-sensor-2-deployment.yaml -n kafka
+kubectl delete -f iot-sensor-3-deployment.yaml -n kafka
+
 #Kafka connect ui and kafka topics ui
 kubectl delete -f kafka-topics-ui-deployment.yaml -n kafka
 kubectl delete -f kafka-connect-ui-deployment.yaml -n kafka
@@ -18,7 +25,8 @@ kubectl delete -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/kafka-connect.
 kubectl delete -f ./kafka/strimzi/strimzi-0.45.0/examples/kafka/kafka-persistent.yaml -n kafka
 kubectl delete -f ./kafka/strimzi/strimzi-0.45.0/install/cluster-operator -n kafka
 
-#kubectl delete ns kafka && kubectl delete ns mongodb
+
+kubectl delete ns kafka && kubectl delete ns mongodb
 
 
 
