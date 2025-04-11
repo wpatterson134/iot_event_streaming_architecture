@@ -21,3 +21,10 @@ kubectl apply -f mongo-express-deployment.yaml -n mongodb
 #Kafka connect ui and kafka topics ui
 kubectl apply -f kafka-topics-ui-deployment.yaml -n kafka
 kubectl apply -f kafka-connect-ui-deployment.yaml -n kafka
+
+#IoT Sensors
+kubectl apply -f sensor-config.yaml -n kafka
+kubectl apply -f iot-processor-deployment.yaml -n kafka
+kubectl apply -f iot-sensor-1-deployment.yaml -n kafka
+kubectl apply -f iot-sensor-2-deployment.yaml -n kafka
+kubectl apply -f iot-sensor-3-deployment.yaml -n kafka
