@@ -14,7 +14,16 @@ kubectl apply -f mongodb-custom-resource.yaml -n mongodb
 kubectl apply -f sensor-config.yaml -n mongodb
 kubectl apply -f mongo-express-deployment.yaml -n mongodb
 
-until kubectl get kafkaconnect my-connect-cluster | grep "Ready"; do
+kubectl apply -f ./mosquitto-deployment.yaml -n kafka
+#Must wait for Mosquitto deploy and svc to be ready.
+#MQTT source connector fails if it starts up before Mosquitto
+#Because it can't find the mosquitto service right away
+until kubectl get deploy mosquitto-deployment -o wide -n kafka | grep "1/1"; do
+  echo "Waiting for Mosquitto service to be ready..."
+  sleep 2
+done
+
+until kubectl get kafkaconnect my-connect-cluster -n kafka | grep "True"; do
   echo "Waiting for Kafka Connect to be ready..."
   sleep 2
 done
@@ -23,12 +32,6 @@ kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/source-connecto
 kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/sink-connector.yaml -n kafka
 kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/bridge/kafka-bridge.yaml -n kafka
 
-until kubectl get kctr mqtt-source | grep "Ready"; do
-  echo "Waiting for MQTT Source connector to be ready..."
-  sleep 2
-done
-
-kubectl apply -f ./mosquitto-deployment.yaml -n kafka
 
 
 
