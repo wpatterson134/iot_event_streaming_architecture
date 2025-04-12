@@ -58,30 +58,9 @@ spec:
     value.converter.schemas.enable: false
     key.converter.schemas.enable: false
 
----
 
-apiVersion: kafka.strimzi.io/v1beta2
-kind: KafkaConnector
-metadata:
-  name: prometheus-connector-sink
-  labels:
-    strimzi.io/cluster: my-connect-cluster
-spec:
-  class: io.confluent.connect.prometheus.PrometheusMetricsSinkConnector 
-  tasksMax: 1
-  config:
-    topics: "iot-metrics-time-series"
-    confluent.topic.bootstrap.servers: "my-cluster-kafka-bootstrap:9092"
-    prometheus.scrape.url: "http://0.0.0.0:8084/iot-metrics-time-series"
-    prometheus.listener.url: "http://0.0.0.0:8084/iot-metrics-time-series"
-    value.converter: "org.apache.kafka.connect.json.JsonConverter"
-    key.converter: "org.apache.kafka.connect.json.JsonConverter"
-    value.converter.schemas.enable: false
-    key.converter.schemas.enable: false
-    reporter.bootstrap.servers: "my-cluster-kafka-bootstrap:9092"
-    reporter.result.topic.replication.factor: "1"
-    reporter.error.topic.replication.factor: "1"
-    behavior.on.error: "log"
+
+
 
 
 
