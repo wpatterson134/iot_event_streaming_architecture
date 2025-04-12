@@ -7,7 +7,7 @@ metadata:
   labels:
     strimzi.io/cluster: my-connect-cluster
 spec:
-  version: 3.5.0
+  version: 3.9.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
   image: wpatterson134/kafka-connect-mongodb:v14 # v14 is the stable version of my custom kafkaconnect image
