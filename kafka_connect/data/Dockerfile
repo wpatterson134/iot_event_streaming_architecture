@@ -13,11 +13,12 @@ ENV PATH=$PATH:$CONFLUENT_HOME/bin
 
 RUN confluent --help
 
-ENV CONFLUENT_CLOUD_EMAIL=wpatterson134@gmail.com
-ENV CONFLUENT_CLOUD_PASSWORD=dir823rEg
+# ENV CONFLUENT_CLOUD_EMAIL=wpatterson134@gmail.com
+# ENV CONFLUENT_CLOUD_PASSWORD=dir823rEg
+ENV CONFLUENT_SUPPORT_METRICS_ENABLE=false
+
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components,/opt/kafka/custom-config/,/opt/kafka,/opt/kafka/plugins"
 
 COPY ./my-plugins/ /opt/kafka/plugins/
 
-ENTRYPOINT [ "confluent login" ]
 USER 1001
