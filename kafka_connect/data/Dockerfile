@@ -1,5 +1,5 @@
 #Kafka 3.8.0 is compatible with all Kakfa connect plugins
-FROM quay.io/strimzi/kafka:0.45.0-kafka-3.9.0
+FROM quay.io/strimzi/kafka:0.45.0-kafka-7.9.0
 
 USER root:root
 # need to download confluent platform and extract before
