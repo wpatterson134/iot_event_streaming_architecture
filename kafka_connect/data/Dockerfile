@@ -4,8 +4,8 @@ FROM quay.io/strimzi/kafka:0.45.0-kafka-3.8.0
 USER root:root
 # need to download confluent platform and extract before
 # building this Dockerfile
-#Run: "curl -O https://packages.confluent.io/archive/7.9/confluent-7.9.0.tar.gz"
-# this will need to be extracted into confluent-7.9.0 directory
+#Run: "curl -O https://packages.confluent.io/archive/7.2/confluent-7.2.0.tar.gz"
+# this will need to be extracted into confluent-7.2.0 directory
 COPY ./confluent-7.2.0 /opt/kafka/confluent-7.2.0
 
 ENV CONFLUENT_HOME=/opt/kafka/confluent-7.2.0
