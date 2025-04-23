@@ -10,7 +10,7 @@ spec:
   version: 3.9.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
-  image: wpatterson134/kafka-connect-mongodb:v19 # v14 is the stable version of my custom kafkaconnect image
+  image: wpatterson134/kafka-connect-mongodb:v22 # v14 is the stable version of my custom kafkaconnect image
   config:
     group.id: "connect-cluster"
     offset.storage.topic: "connect-offsets"
