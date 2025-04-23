@@ -30,6 +30,7 @@ done
 
 kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/source-connector.yaml -n kafka
 kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/sink-connector.yaml -n kafka
+kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/prometheus-sink.yaml -n kafka
 kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/bridge/kafka-bridge.yaml -n kafka
 
 
