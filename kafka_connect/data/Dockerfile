@@ -1,4 +1,13 @@
-#Kafka 3.8.0 is compatible with all Kakfa connect plugins
+
+# Notes of Kafka Connector, Kafka,  & Confluent Platform versions...
+# Certain connectors only work with certain versions of aformentioned components
+# Prometheus Sink connector is especially tempermental.
+# Below are the recommmended versions for the Prometheus Sink Connector, 
+# Version 1.2.4
+# Connector Version | Recommended CP Version | Kafka Version
+# 1.2.4 | 6.2.x – 7.2.x | 2.8.x – 3.2.x
+# Latest | 7.5.x – 7.9.x | 3.5 – 3.8.x
+
 FROM quay.io/strimzi/kafka:0.32.0-kafka-3.2.1
 
 USER root:root
