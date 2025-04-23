@@ -1,46 +1,34 @@
-prometheus.yml:
-  global:
-    scrape_interval:     15s
-    evaluation_interval: 15s
+extraScrapeConfigs: |
+  - job_name: 'prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['localhost:9090']
+      
+  - job_name: 'iot-processor'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['iot-processor:8080']
+    basic_auth:
+      username: "prometheus"
+      password: "prometheus"
+      
+  - job_name: 'nodeexporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['nodeexporter:9100']
 
-    # Attach these labels to any time series or alerts when communicating with
-    # external systems (federation, remote storage, Alertmanager).
-    external_labels:
-        monitor: 'docker-host-alpha'
+  - job_name: 'iot-metrics-time-series'
+    metrics_path: '/iot-metrics-time-series'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['kafka-connect:8084']
 
-# A scrape configuration containing exactly one endpoint to scrape.
-  scrape_configs:
+  - job_name: 'cadvisor'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['cadvisor:8080']
 
-    - job_name: 'prometheus'
-      scrape_interval: 10s
-      static_configs:
-        - targets: ['localhost:9090']
-        
-    - job_name: 'iot-processor'
-      metrics_path: '/actuator/prometheus'
-      static_configs:
-        - targets: ['iot-processor:8080']
-      basic_auth:
-        username: "prometheus"
-        password: "prometheus"
-        
-    - job_name: 'nodeexporter'
-      scrape_interval: 5s
-      static_configs:
-        - targets: ['nodeexporter:9100']
-
-    - job_name: 'iot-metrics-time-series'
-      metrics_path: '/iot-metrics-time-series'
-      scrape_interval: 5s
-      static_configs:
-        - targets: ['kafka-connect:8084']
-
-    - job_name: 'cadvisor'
-      scrape_interval: 5s
-      static_configs:
-        - targets: ['cadvisor:8080']
-
-    - job_name: 'kafka-exporter'
-      scrape_interval: 5s
-      static_configs:
-        - targets: ['kafka-exporter:9308']
+  - job_name: 'kafka-exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['kafka-exporter:9308']
