@@ -2,6 +2,7 @@
 
 #IoT sensors and processor
 kubectl delete -f sensor-config.yaml -n kafka
+kubectl delete -f kafka-alias.yaml -n kafka
 kubectl delete -f iot-processor-deployment.yaml -n kafka
 kubectl delete -f iot-sensor-1-deployment.yaml -n kafka
 kubectl delete -f iot-sensor-2-deployment.yaml -n kafka
