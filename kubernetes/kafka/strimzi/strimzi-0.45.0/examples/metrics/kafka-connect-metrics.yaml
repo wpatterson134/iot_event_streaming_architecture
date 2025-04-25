@@ -2,12 +2,26 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnect
 metadata:
   name: my-connect-cluster
+  annotations:
+    strimzi.io/use-connector-resources: "true"
   labels:
     app: my-connect-cluster
+    strimzi.io/cluster: my-connect-cluster
 spec:
   version: 3.9.0
   replicas: 1
   bootstrapServers: my-cluster-kafka-bootstrap:9092
+  image: wpatterson134/kafka-connect-mongodb:v26 # v26 is the stable version of my custom kafkaconnect image
+  config:
+    group.id: "connect-cluster"
+    offset.storage.topic: "connect-offsets"
+    config.storage.topic: "connect-configs"
+    status.storage.topic: "connect-status"
+    key.converter: "org.apache.kafka.connect.storage.StringConverter"
+    value.converter: "org.apache.kafka.connect.json.JsonConverter"
+    value.converter.schemas.enable: "false"
+    key.converter.schemas.enable: "false"
+    plugin.path: "/usr/share/java,usr/share/confluent-hub-components,/opt/kafka/custom-config/,/opt/kafka,/opt/kafka/plugins"  # Custom plugin path
   metricsConfig:
     type: jmxPrometheusExporter
     valueFrom:

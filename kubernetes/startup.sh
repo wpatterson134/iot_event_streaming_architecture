@@ -4,8 +4,8 @@ kubectl create ns kafka && kubectl create ns mongodb
 
 #kafka resources
 kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/install/cluster-operator -n kafka
-kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/kafka/kafka-persistent.yaml -n kafka
-kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/connect/kafka-connect.yaml -n kafka
+kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/metrics/kafka-metrics.yaml -n kafka
+kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/metrics/kafka-connect-metrics.yaml -n kafka
 
 #mongodb resources
 helm repo update
