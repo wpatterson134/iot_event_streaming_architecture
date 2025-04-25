@@ -50,5 +50,5 @@ kubectl apply -f iot-sensor-2-deployment.yaml -n kafka
 kubectl apply -f iot-sensor-3-deployment.yaml -n kafka
 
 #Prometheus resources
-kubectl create ns prometheus
-kubectl apply -f prometheus-frontend.yaml -n prometheus
+kubectl create ns monitoring
+kubectl apply -f prometheus-frontend.yaml -n monitoring

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-connect
+  namespace: kafka  # Make sure this matches your Kafka namespace
+spec:
+  ports:
+    - port: 8084
+      targetPort: 8083
+  selector:
+    app: my-connect-cluster
+    app.kubernetes.io/instance: my-connect-cluster
+    app.kubernetes.io/managed-by: strimzi-cluster-operator
+    app.kubernetes.io/name: kafka-connect
+    app.kubernetes.io/part-of: strimzi-my-connect-cluster
+    strimzi.io/cluster: my-connect-cluster
+    strimzi.io/component-type: kafka-connect
+    strimzi.io/kind: KafkaConnect
+    strimzi.io/name: my-connect-cluster-connect
