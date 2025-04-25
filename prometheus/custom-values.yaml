@@ -5,6 +5,11 @@ extraScrapeConfigs: |
     scrape_interval: 5s
     static_configs:
       - targets: ['my-connect-cluster-connect-api.kafka.svc.cluster.local:8083']
+
+  - job_name: 'kafka-exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['kafka-exporter.kafka.svc.cluster.local:9308']
       
   - job_name: 'iot-processor'
     metrics_path: '/actuator/prometheus'
@@ -13,3 +18,8 @@ extraScrapeConfigs: |
     basic_auth:
       username: "prometheus"
       password: "prometheus"
+
+  - job_name: 'nodeexporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['nodeexporter:9100']

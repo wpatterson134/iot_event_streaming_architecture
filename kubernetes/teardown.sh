@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Prometheus resources
+kubectl delete prometheus-frontend.yaml -n prometheus
+
 #IoT sensors and processor
 kubectl delete -f sensor-config.yaml -n kafka
 kubectl delete -f kafka-alias.yaml -n kafka
@@ -11,6 +14,8 @@ kubectl delete -f iot-sensor-3-deployment.yaml -n kafka
 #Kafka connect ui and kafka topics ui
 kubectl delete -f kafka-topics-ui-deployment.yaml -n kafka
 kubectl delete -f kafka-connect-ui-deployment.yaml -n kafka
+kubectl delete -f kafka-exporter-deployment.yaml -n kafka
+
 
 #mongodb resources
 kubectl delete -f mongodb-custom-resource.yaml -n mongodb
@@ -29,6 +34,8 @@ kubectl delete -f ./kafka/strimzi/strimzi-0.45.0/install/cluster-operator -n kaf
 
 
 kubectl delete ns kafka && kubectl delete ns mongodb
+kubectl delete ns prometheus
+
 
 
 

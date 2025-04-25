@@ -39,6 +39,7 @@ kubectl apply -f ./kafka/strimzi/strimzi-0.45.0/examples/bridge/kafka-bridge.yam
 #Kafka connect ui and kafka topics ui
 kubectl apply -f kafka-topics-ui-deployment.yaml -n kafka
 kubectl apply -f kafka-connect-ui-deployment.yaml -n kafka
+kubectl apply -f kafka-exporter-deployment.yaml -n kafka
 
 #IoT Sensors
 kubectl apply -f sensor-config.yaml -n kafka
@@ -47,3 +48,7 @@ kubectl apply -f iot-processor-deployment.yaml -n kafka
 kubectl apply -f iot-sensor-1-deployment.yaml -n kafka
 kubectl apply -f iot-sensor-2-deployment.yaml -n kafka
 kubectl apply -f iot-sensor-3-deployment.yaml -n kafka
+
+#Prometheus resources
+kubectl create ns prometheus
+kubectl apply -f prometheus-frontend.yaml -n prometheus
