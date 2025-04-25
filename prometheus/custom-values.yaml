@@ -4,7 +4,7 @@ extraScrapeConfigs: |
     metrics_path: '/iot-metrics-time-series'
     scrape_interval: 5s
     static_configs:
-      - targets: ['my-connect-cluster-connect-api.kafka.svc.cluster.local:8083']
+      - targets: ['kafka-connect.kafka.svc.cluster.local:8084']
 
   - job_name: 'kafka-exporter'
     scrape_interval: 5s
