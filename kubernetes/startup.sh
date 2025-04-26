@@ -52,3 +52,10 @@ kubectl apply -f iot-sensor-3-deployment.yaml -n kafka
 #Prometheus resources
 kubectl create ns monitoring
 kubectl apply -f prometheus-frontend.yaml -n monitoring
+kubectl apply -f kafka-connect-alias.yaml -n kafka
+helm repo update
+helm install prometheus prometheus-community/prometheus --namespace monitoring --values ../prometheus/custom-values.yaml
+
+#Grafana resources
+kubectl apply -f grafana-frontend.yaml -n monitoring
+helm install grafana grafana/grafana --namespace monitoring

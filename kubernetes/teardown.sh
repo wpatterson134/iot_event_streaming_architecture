@@ -1,7 +1,13 @@
 #!/bin/bash
 
+#Grafana resources
+kubectl delete -f grafana-frontend.yaml -n monitoring
+helm uninstall grafana grafana/grafana --namespace monitoring
+
 #Prometheus resources
 kubectl delete prometheus-frontend.yaml -n monitoring
+kubectl delete -f kafka-connect-alias.yaml -n kafka
+helm uninstall prometheus prometheus-community/prometheus --namespace monitoring
 
 #IoT sensors and processor
 kubectl delete -f sensor-config.yaml -n kafka
