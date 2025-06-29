@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/wpatterson134/iot_event_streaming_architecture.git'
+                git branch: 'master', url: 'https://github.com/wpatterson134/iot_event_streaming_architecture.git'
             }
         }
         
