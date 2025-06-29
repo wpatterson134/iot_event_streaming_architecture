@@ -21,7 +21,7 @@ pipeline {
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "chmod +x ./microservices/iot_processor/mvnw"
-                       sh "./mvnw clean install"
+                       sh "./microservices/iot_processor/mvnw clean install"
                        sh "docker build -t iot-processor ./microservices/iot_processor"
                        sh "docker tag iot-processor wpatterson134/iot-processor:${env.BUILD_NUMBER} "
                        sh "docker push wpatterson134/iot-processor:${env.BUILD_NUMBER} "
