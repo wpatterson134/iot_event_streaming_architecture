@@ -15,14 +15,20 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/wpatterson134/iot_event_streaming_architecture.git'
             }
         }
+        stage('Build Maven Wrapper') {
+            steps {
+                script {
+                    dir('microservices/iot_processor') {  
+                        sh "chmod +x mvnw"
+                        sh "./mvnw clean install"
+                    }
+            }
+        }
         
         stage("Docker Build & Push"){
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                       sh "cd microservices/iot_processor/"
-                       sh "chmod +x mvnw"
-                       sh "mvnw clean install"
                        sh "docker build -t iot-processor ."
                        sh "docker tag iot-processor wpatterson134/iot-processor:${env.BUILD_NUMBER} "
                        sh "docker push wpatterson134/iot-processor:${env.BUILD_NUMBER} "
