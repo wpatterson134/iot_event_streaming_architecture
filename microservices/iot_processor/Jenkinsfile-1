@@ -31,6 +31,7 @@ pipeline {
                 script{
                    dir('microservices/iot_processor') {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
+                       sh "echo 'BUILDING IMAGE NOW'"
                        sh "docker build -t iot-processor ."
                        sh "docker tag iot-processor wpatterson134/iot-processor:${env.BUILD_NUMBER} "
                        sh "docker push wpatterson134/iot-processor:${env.BUILD_NUMBER} "
