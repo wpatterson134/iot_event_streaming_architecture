@@ -29,11 +29,13 @@ pipeline {
         stage("Docker Build & Push"){
             steps{
                 script{
-                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
+                   dir('microservices/iot_processor') {
+                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t iot-processor ."
                        sh "docker tag iot-processor wpatterson134/iot-processor:${env.BUILD_NUMBER} "
                        sh "docker push wpatterson134/iot-processor:${env.BUILD_NUMBER} "
                     }
+                   }
                 }
             }
         }
