@@ -1,11 +1,9 @@
 pipeline {
     agent {
-        label 'jenkins-agent'
-        args '-v'
+        kubernetes {
+            label 'jenkins-agent'
+        }
     }
-    // tools {
-    //     jdk 'java-11'
-    // }
     
     stages {
         stage('clean workspace') {
