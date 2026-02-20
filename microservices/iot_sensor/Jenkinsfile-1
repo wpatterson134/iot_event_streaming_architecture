@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'java-11'
+    }
+    
+    stages {
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Checkout from Git') {
+            steps {
+                git branch: 'master', url: 'https://github.com/wpatterson134/iot_event_streaming_architecture.git'
+            }
+        }
+        stage('Build Maven Wrapper') {
+            steps {
+                script {
+                    dir('microservices/iot_processor') {  
+                        sh "chmod +x mvnw"
+                        sh "./mvnw clean install"
+                    }
+                }
+            }
+        }
+        
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                   dir('microservices/iot_processor') {
+                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
+                       sh "echo 'BUILDING IMAGE NOW'"
+                       sh "docker build -t iot-processor ."
+                       sh "docker tag iot-processor wpatterson134/iot-processor:${env.BUILD_NUMBER} "
+                       sh "docker push wpatterson134/iot-processor:${env.BUILD_NUMBER} "
+                    }
+                   }
+                }
+            }
+        }
+        
+        stage("Trigger ManifestUpdate") {
+            steps {
+                script {
+                    sh "echo 'triggering updatemanifestjob'"
+                    build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+                }
+            }
+        }
+    }
+}

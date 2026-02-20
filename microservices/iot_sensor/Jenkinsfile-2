@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'DOCKERTAG', defaultValue: env.BUILD_NUMBER, description: 'Tag for the Docker image')
+    }
+    stages {
+        stage('Clone repository') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Update GIT') {
+            steps {
+                script {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                            sh "git config user.email wpatterson134@gmail.com"
+                            sh "git config user.name wpatterson134"
+                            sh "cat ./kubernetes/iot-processor-deployment.yaml"
+                            sh "sed -i 's+wpatterson134/iot-processor.*+wpatterson134/iot-processor:${params.DOCKERTAG}+g' ./kubernetes/iot-processor-deployment.yaml"
+                            sh "cat ./kubernetes/iot-processor-deployment.yaml"
+                            sh "git add ."
+                            sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
+                            sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/iot_event_streaming-architecture.git HEAD:main"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
