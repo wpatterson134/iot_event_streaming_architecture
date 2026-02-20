@@ -1,8 +1,10 @@
 pipeline {
-    agent any
-    tools {
-        jdk 'java-11'
+    agent {
+        label 'jenkins-agent'
     }
+    // tools {
+    //     jdk 'java-11'
+    // }
     
     stages {
         stage('clean workspace') {
@@ -17,7 +19,7 @@ pipeline {
                 sh 'echo $JAVA_HOME'
             }
         }
-        
+
         stage('Checkout from Git') {
             steps {
                 git branch: 'master', url: 'https://github.com/wpatterson134/iot_event_streaming_architecture.git'
