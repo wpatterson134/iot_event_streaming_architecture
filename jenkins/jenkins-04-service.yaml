@@ -9,7 +9,7 @@ metadata:
       prometheus.io/port:   '8080'
 spec:
   selector:
-    app: jenkins
+    app.kubernetes.io/component: jenkins-controller
   type: LoadBalancer
   ports:
     - port: 8080
