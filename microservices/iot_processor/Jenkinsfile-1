@@ -40,7 +40,7 @@ pipeline {
                     script {
                         dir('microservices/iot_processor') {
                             sh 'chmod +x mvnw'
-                            sh './mvnw clean install'
+                            sh './mvnw -B -U -Dmaven.repo.local=/root/.m2/repository clean install'
                         }
                     }
                 }
