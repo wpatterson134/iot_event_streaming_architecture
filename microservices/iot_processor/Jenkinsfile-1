@@ -38,10 +38,11 @@ pipeline {
             steps {
                 container ('maven') {
                     script {
-                        
-                        sh "chmod +x ./microservices/iot_processor/mvnw"
-                        sh "./microservices/iot_processor/mvnw clean install"
-                }
+                        dir('microservices/iot_processor') {
+                            sh 'chmod +x mvnw'
+                            sh './mvnw clean install'
+                        }
+                    }
                 }
                 
             }
