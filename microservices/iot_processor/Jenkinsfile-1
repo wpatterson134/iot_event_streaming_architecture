@@ -39,8 +39,9 @@ pipeline {
                 container ('maven') {
                     script {
                         dir('microservices/iot_processor') {
+                            sh 'unset MAVEN_CONFIG'
                             sh 'chmod +x mvnw'
-                            sh './mvnw -B -U -Dmaven.repo.local=/root/.m2/repository clean install'
+                            sh './mvnw clean install'
                         }
                     }
                 }
