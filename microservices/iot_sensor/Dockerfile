@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM eclipse-temurin:8-jdk-alpine
 # Add Maintainer Info
 LABEL description="Simulate IoT Sensor"
 # Args for image
