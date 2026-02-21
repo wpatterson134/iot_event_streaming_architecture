@@ -39,7 +39,7 @@ pipeline {
                 container ('maven') {
                     script {
                         dir('microservices/iot_processor') {
-                            sh 'sudo chmod +x mvnw'
+                            sh 'chmod +x mvnw'
                             sh './mvnw clean install'
                         }
                     }
